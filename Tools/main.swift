@@ -443,9 +443,9 @@ func writeCommands(outstream:OutputStream, _ delegate:KhronosXmlDelegate)
         outstream.write(string: "public func \(cmd)(")
         count = 0
         for t in types {
-            if count > 0 {
+         /*   if count > 0 {
                 outstream.write(string: "_ ")
-            }
+            } */
             outstream.write(string: "\(t.0):\(t.1)")
 			count += 1
             if count < params.count {
@@ -458,10 +458,10 @@ func writeCommands(outstream:OutputStream, _ delegate:KhronosXmlDelegate)
             outstream.write(string: "public func \(cmd)(")
             count = 0
             for t in types {
-                if count == 0 {
-					//FIXME: NEEDS FIXING hardcoded _ for now
+              //  if count == 0 {
+			//		//FIXME: NEEDS FIXING hardcoded _ for now
                     outstream.write(string: "_ ")
-                }
+             //   }
                 outstream.write(string: "\(t.0):\(t.1)")
 				count += 1
                 if count < params.count {
@@ -525,9 +525,9 @@ func writeLoaders(outstream:OutputStream, _ delegate:KhronosXmlDelegate)
         outstream.write(string: "func \(cmd)_L(")
         count = 0
         for t in types {
-            if count > 0 {
+            /*if count > 0 {
                 outstream.write(string: "_ ")
-            }
+            }*/
             outstream.write(string: "\(t.0):\(t.1)")
 			count += 1
             if count < params.count {
