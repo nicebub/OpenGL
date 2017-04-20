@@ -2570,7 +2570,7 @@ func glDrawElementArrayATI_L(mode:GLenum, count:GLsizei) {
     glDrawElementArrayATI_P = unsafeBitCast(getAddress(info: CommandInfo("glDrawElementArrayATI", [S140])), to: type(of: glDrawElementArrayATI_P))
     glDrawElementArrayATI_P(mode, count)
 }
-func glDrawElements_L(mode:GLenum, count:GLsizei, type:GLenum, indices:UnsafeRawPointer) {
+func glDrawElements_L(mode:GLenum, count:GLsizei, type:GLenum, indices:UnsafeRawPointer?) {
     glDrawElements_P = unsafeBitCast(getAddress(info: CommandInfo("glDrawElements", [S1, S18])), to: type(of: glDrawElements_P))
     glDrawElements_P(mode, count, type, indices)
 }

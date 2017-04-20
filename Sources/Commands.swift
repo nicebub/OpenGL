@@ -1647,9 +1647,9 @@ var glDrawElementArrayAPPLE_P:@convention(c)(GLenum, GLint, GLsizei) -> Void = g
 public func glDrawElementArrayATI(mode:GLenum, count:GLsizei) {glDrawElementArrayATI_P(mode, count)}
 public func glDrawElementArrayATI(_ mode:GLenum, _ count:GLsizei) {glDrawElementArrayATI_P(mode, count)}
 var glDrawElementArrayATI_P:@convention(c)(GLenum, GLsizei) -> Void = glDrawElementArrayATI_L
-public func glDrawElements(mode:GLenum, count:GLsizei, type:GLenum, indices:UnsafeRawPointer) {glDrawElements_P(mode, count, type, indices)}
-public func glDrawElements(_ mode:GLenum, _ count:GLsizei, _ type:GLenum, _ indices:UnsafeRawPointer) {glDrawElements_P(mode, count, type, indices)}
-var glDrawElements_P:@convention(c)(GLenum, GLsizei, GLenum, UnsafeRawPointer) -> Void = glDrawElements_L
+public func glDrawElements(mode:GLenum, count:GLsizei, type:GLenum, indices:UnsafeRawPointer?) {glDrawElements_P(mode, count, type, indices)}
+public func glDrawElements(_ mode:GLenum, _ count:GLsizei, _ type:GLenum, _ indices:UnsafeRawPointer?) {glDrawElements_P(mode, count, type, indices)}
+var glDrawElements_P:@convention(c)(GLenum, GLsizei, GLenum, UnsafeRawPointer?) -> Void = glDrawElements_L
 public func glDrawElementsBaseVertex(mode:GLenum, count:GLsizei, type:GLenum, indices:UnsafeRawPointer, basevertex:GLint) {glDrawElementsBaseVertex_P(mode, count, type, indices, basevertex)}
 public func glDrawElementsBaseVertex(_ mode:GLenum, _ count:GLsizei, _ type:GLenum, _ indices:UnsafeRawPointer, _ basevertex:GLint) {glDrawElementsBaseVertex_P(mode, count, type, indices, basevertex)}
 var glDrawElementsBaseVertex_P:@convention(c)(GLenum, GLsizei, GLenum, UnsafeRawPointer, GLint) -> Void = glDrawElementsBaseVertex_L
