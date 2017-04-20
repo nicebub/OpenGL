@@ -367,27 +367,27 @@ func paramType(x:KhronosXmlDelegate.paramTuple) -> String
     if type == "GLvoid" {type = "Void"}
 
     if type == "struct _cl_context" {
-        type = "COpaquePointer"
+        type = "OpaquePointer"
     } else if type == "struct _cl_event" {
-        type = "COpaquePointer"
-    } else if x.ptr == "const!*?" {
+        type = "OpaquePointer"
+    } else if x.ptr == "const!*?" && type != "Void" {
         type = "UnsafePointer<\(type)>"
-    } else if x.ptr == "!*?" {
+    } else if x.ptr == "!*?"  && type != "Void" {
         type = "UnsafeMutablePointer<\(type)>"
     } else if x.ptr == "void*?" {
-        type = "UnsafeMutablePointer<Void>"
+        type = "UnsafeMutableRawPointer"
     } else if x.ptr == "constvoid*?" {
-        type = "UnsafePointer<Void>"
+        type = "UnsafeRawPointer"
     } else if x.ptr == "constvoid**?" {
-        type = "UnsafeMutablePointer<UnsafePointer<Void>>"
-    } else if x.ptr == "const!*const*?" {
+        type = "UnsafeMutablePointer<UnsafeRawPointer>"
+    } else if x.ptr == "const!*const*?" && type != "Void" {
         type = "UnsafePointer<UnsafePointer<\(type)>>"
-    } else if x.ptr == "const!**?" {
+    } else if x.ptr == "const!**?"  && type != "Void" {
         type = "UnsafeMutablePointer<UnsafePointer<\(type)>>"
     } else if x.ptr == "void**?" {
-        type = "UnsafeMutablePointer<UnsafeMutablePointer<Void>>"
+        type = "UnsafeMutablePointer<UnsafeMutableRawPointer>"
     } else if x.ptr == "constvoid*const*?" {
-        type = "UnsafePointer<UnsafePointer<Void>>"
+        type = "UnsafePointer<UnsafeRawPointer>"
     }
     // Helper to find new pointer types
     // else if x.ptr != "!?" {
@@ -405,7 +405,7 @@ func returnType(cmd:String, _ delegate:KhronosXmlDelegate) -> String
     if retValue == "void" {
         return "Void"
     } else if retValue == "void *" {
-        return "UnsafeMutablePointer<Void>"
+        return "UnsafeMutableRawPointer"
     } else if retValue == "GLubyte*" {
         return "UnsafePointer<GLubyte>"
     } else {
@@ -459,7 +459,8 @@ func writeCommands(outstream:OutputStream, _ delegate:KhronosXmlDelegate)
             count = 0
             for t in types {
                 if count == 0 {
-                    outstream.write(string: "\(t.0) ")
+					//FIXME: NEEDS FIXING hardcoded _ for now
+                    outstream.write(string: "_ ")
                 }
                 outstream.write(string: "\(t.0):\(t.1)")
 				count += 1
@@ -552,7 +553,7 @@ func writeLoaders(outstream:OutputStream, _ delegate:KhronosXmlDelegate)
                 strnums.append(strings.index(of:v)!)
             }
         }
-        outstream.write(string: "CommandInfo(\"\(cmd)\", [")
+        outstream.write(string: "info: CommandInfo(\"\(cmd)\", [")
         count = 0
         for n in strnums {
             outstream.write(string: "S\(n)")
@@ -562,7 +563,7 @@ func writeLoaders(outstream:OutputStream, _ delegate:KhronosXmlDelegate)
             }
         }
 
-        outstream.write(string: "])), type(of: \(cmd)_P))\n")
+        outstream.write(string: "])), to: type(of: \(cmd)_P))\n")
 
         if returns == "Void" {
             outstream.write(string: "    \(cmd)_P(")
@@ -602,7 +603,6 @@ func tidyDelegate(delegate:KhronosXmlDelegate)
     for (cmd, params) in delegate.commandParams {
         var count = 0
         for x in params {
-			print(x.name)
             if x.name == "func" {
                 delegate.commandParams[cmd]![count] =
                     (name:"fn",type:x.type,ptr:x.ptr,group:x.group,len:x.len)
