@@ -3093,9 +3093,10 @@ var glGetPerfMonitorGroupStringAMD_P:@convention(c)(GLuint, GLsizei, UnsafeMutab
 public func glGetPerfMonitorGroupsAMD(numGroups:UnsafeMutablePointer<GLint>, groupsSize:GLsizei, groups:UnsafeMutablePointer<GLuint>) {glGetPerfMonitorGroupsAMD_P(numGroups, groupsSize, groups)}
 public func glGetPerfMonitorGroupsAMD(_ numGroups:UnsafeMutablePointer<GLint>, _ groupsSize:GLsizei, _ groups:UnsafeMutablePointer<GLuint>) {glGetPerfMonitorGroupsAMD_P(numGroups, groupsSize, groups)}
 var glGetPerfMonitorGroupsAMD_P:@convention(c)(UnsafeMutablePointer<GLint>, GLsizei, UnsafeMutablePointer<GLuint>) -> Void = glGetPerfMonitorGroupsAMD_L
-public func glGetPerfQueryDataINTEL(queryHandle:GLuint, flags:GLuint, dataSize:GLsizei, data:Void, bytesWritten:UnsafeMutablePointer<GLuint>) {glGetPerfQueryDataINTEL_P(queryHandle, flags, dataSize, data, bytesWritten)}
-public func glGetPerfQueryDataINTEL(_ queryHandle:GLuint, _ flags:GLuint, _ dataSize:GLsizei, _ data:Void, _ bytesWritten:UnsafeMutablePointer<GLuint>) {glGetPerfQueryDataINTEL_P(queryHandle, flags, dataSize, data, bytesWritten)}
-var glGetPerfQueryDataINTEL_P:@convention(c)(GLuint, GLuint, GLsizei, Void, UnsafeMutablePointer<GLuint>) -> Void = glGetPerfQueryDataINTEL_L
+//FIXME for compiling
+//public func glGetPerfQueryDataINTEL(queryHandle:GLuint, flags:GLuint, dataSize:GLsizei, data:Void, bytesWritten:UnsafeMutablePointer<GLuint>) {glGetPerfQueryDataINTEL_P(queryHandle, flags, dataSize, data, bytesWritten)}
+//public func glGetPerfQueryDataINTEL(_ queryHandle:GLuint, _ flags:GLuint, _ dataSize:GLsizei, _ data:Void, _ bytesWritten:UnsafeMutablePointer<GLuint>) {glGetPerfQueryDataINTEL_P(queryHandle, flags, dataSize, data, bytesWritten)}
+//var glGetPerfQueryDataINTEL_P:@convention(c)(GLuint, GLuint, GLsizei, Void, UnsafeMutablePointer<GLuint>) -> Void = glGetPerfQueryDataINTEL_L
 public func glGetPerfQueryIdByNameINTEL(queryName:UnsafeMutablePointer<GLchar>, queryId:UnsafeMutablePointer<GLuint>) {glGetPerfQueryIdByNameINTEL_P(queryName, queryId)}
 public func glGetPerfQueryIdByNameINTEL(_ queryName:UnsafeMutablePointer<GLchar>, _ queryId:UnsafeMutablePointer<GLuint>) {glGetPerfQueryIdByNameINTEL_P(queryName, queryId)}
 var glGetPerfQueryIdByNameINTEL_P:@convention(c)(UnsafeMutablePointer<GLchar>, UnsafeMutablePointer<GLuint>) -> Void = glGetPerfQueryIdByNameINTEL_L

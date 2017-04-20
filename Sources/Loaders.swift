@@ -4530,10 +4530,11 @@ func glGetPerfMonitorGroupsAMD_L(numGroups:UnsafeMutablePointer<GLint>, groupsSi
     glGetPerfMonitorGroupsAMD_P = unsafeBitCast(getAddress(info: CommandInfo("glGetPerfMonitorGroupsAMD", [S32])), to: type(of: glGetPerfMonitorGroupsAMD_P))
     glGetPerfMonitorGroupsAMD_P(numGroups, groupsSize, groups)
 }
-func glGetPerfQueryDataINTEL_L(queryHandle:GLuint, flags:GLuint, dataSize:GLsizei, data:Void, bytesWritten:UnsafeMutablePointer<GLuint>) {
+//FIXME for compiling
+/*func glGetPerfQueryDataINTEL_L(queryHandle:GLuint, flags:GLuint, dataSize:GLsizei, data:Void, bytesWritten:UnsafeMutablePointer<GLuint>) {
     glGetPerfQueryDataINTEL_P = unsafeBitCast(getAddress(info: CommandInfo("glGetPerfQueryDataINTEL", [S243])), to: type(of: glGetPerfQueryDataINTEL_P))
     glGetPerfQueryDataINTEL_P(queryHandle, flags, dataSize, data, bytesWritten)
-}
+}*/
 func glGetPerfQueryIdByNameINTEL_L(queryName:UnsafeMutablePointer<GLchar>, queryId:UnsafeMutablePointer<GLuint>) {
     glGetPerfQueryIdByNameINTEL_P = unsafeBitCast(getAddress(info: CommandInfo("glGetPerfQueryIdByNameINTEL", [S243])), to: type(of: glGetPerfQueryIdByNameINTEL_P))
     glGetPerfQueryIdByNameINTEL_P(queryName, queryId)
