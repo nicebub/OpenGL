@@ -562,7 +562,7 @@ func writeLoaders(outstream:OutputStream, _ delegate:KhronosXmlDelegate)
             }
         }
 
-        outstream.write(string: "])), type(of: \(cmd)_P)\n")
+        outstream.write(string: "])), type(of: \(cmd)_P))\n")
 
         if returns == "Void" {
             outstream.write(string: "    \(cmd)_P(")
